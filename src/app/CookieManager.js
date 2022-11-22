@@ -2,11 +2,11 @@ import Cookies from 'js-cookie'
 
 class CookieManager {
     getLichessAccessToken() {
-        return Cookies.get('at')
+        return JSON.parse(Cookies.get('at'))
     }
 
     setLichessAccessToken(value) {
-        Cookies.set('at', value, {expires: 365})
+        Cookies.set('at', JSON.stringify(value), {expires: 365})
     }
 
     deleteLichessAccessToken() {
@@ -25,14 +25,14 @@ class CookieManager {
         Cookies.set('dm',darkMode)
     }
     getDarkModeCookie() {
-        return Cookies.get('dm')
+        return JSON.parse(Cookies.get('dm'))
 
     }
 
     getSettingsCookie() {
         let settingsCookie = null
         try {
-            settingsCookie = Cookies.get('set')
+            settingsCookie = JSON.parse(Cookies.get('set'))
         } catch (e) {
             console.log(e)
             return null
@@ -50,9 +50,9 @@ class CookieManager {
             return this.currentVisit
         }
         // executes when page loads
-        let lastVisitCookie = Cookies.get('lst')
-        let visitsCookie = Cookies.get('vcnt')
-        let firstVisitCookie = Cookies.get('fst')
+        let lastVisitCookie = JSON.parse(Cookies.get('lst'))
+        let visitsCookie = JSON.parse(Cookies.get('vcnt'))
+        let firstVisitCookie = JSON.parse(Cookies.get('fst'))
         let lastVisit = lastVisitCookie?parseInt(lastVisitCookie):null
         let timesVisited = visitsCookie?parseInt(visitsCookie):0
         let firstVisit = firstVisitCookie?parseInt(firstVisitCookie):null
